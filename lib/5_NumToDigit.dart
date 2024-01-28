@@ -13,18 +13,21 @@ class NumToDigits {
     'eight': 8,
     'nine': 9
   };
-  findNumber(words) {
+
+  Set<int> findNumber(List<String> words) {
+    final result = <int>{};
     for (String word in words) {
       if (numDictionary.containsKey(word)) {
-        print(numDictionary[word]);
+        result.add(numDictionary[word]!);
       }
       ;
     }
+    return result;
   }
 }
 
 void main() {
-  List<String> words = ['one', 'two', 'free', 'lol'];
+  List<String> words = ['one', 'two', 'three', 'lol'];
   NumToDigits converter = NumToDigits(words);
-  converter.findNumber(words);
+  print(converter.findNumber(words));
 }

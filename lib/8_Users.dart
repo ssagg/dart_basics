@@ -19,8 +19,8 @@ class GeneralUser extends User {
 
 class UserManager<T extends User> {
   String user;
-  UserManager(this.user, super.email);
-  List<String> users = ['vasys@mail.cru', 'admin@admin.ru'];
+  UserManager(this.user);
+  List<String> users = ['vasys@mail.com', 'admin@admin.ru'];
 
   addUser() {
     users.add(user);
@@ -33,10 +33,20 @@ class UserManager<T extends User> {
   showUsers() {
     print(users);
   }
+
+  List<String> checkEmails() {
+    final List<String> emails =[];
+    users.forEach((user) {if (`user is admin`) {
+      emails.add(user.getMailSystem()); // check his email
+    } else {
+      emails.add(user); // add simple user
+    } });
+    return emails;
+  }
 }
 
 void main() {
-  var smb = UserManager('admin', 'admin@admi.ru');
+  var smb = UserManager('admin');
   var admUser = AdminUser('admin@admin.ru');
   print(admUser.getMailSystem('admin@admin.ru'));
 }
